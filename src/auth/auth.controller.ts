@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { CreateUserDto } from '../user/dto/create-user.dto';
-import { LocalAuthGuards } from './guards/local-auth.guards';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 export class AuthController {
@@ -20,7 +20,7 @@ export class AuthController {
   }
 
   // TODO LOGIN avec strategy local
-  @UseGuards(LocalAuthGuards)
+  @UseGuards(AuthGuard('local'))
   @Post('login')
   @HttpCode(200)
   login(@Request() req) {

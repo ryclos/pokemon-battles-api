@@ -39,25 +39,25 @@ describe('AuthController (e2e)', () => {
       .expect(200);
   });
 
-  // TODO 403 mot de passe invalide
-  //it('[POST][403] /auth/login', () => {
-  //  return request(app.getHttpServer())
-  //      .post('/auth/login')
-  //      .send({
-  //        username: 'test',
-  //        password: 'testicule',
-  //      })
-  //      .expect(403);
-  //});
-  //
-  //// TODO 403 UTILISATEUR NON EXISTANT
-  //it('[POST][403] /auth/login', () => {
-  //  return request(app.getHttpServer())
-  //      .post('/auth/login')
-  //      .send({
-  //        username: 'testabulle',
-  //        password: 'test',
-  //      })
-  //      .expect(`Utilisateur introuvable ${403}`)
-  //});
+  // TODO 401 mot de passe invalide
+  it('[POST][401] /auth/login', () => {
+    return request(app.getHttpServer())
+      .post('/auth/login')
+      .send({
+        username: 'test',
+        password: 'testicule',
+      })
+      .expect(401);
+  });
+
+  // TODO 401 UTILISATEUR NON EXISTANT
+  it('[POST][401] /auth/login', () => {
+    return request(app.getHttpServer())
+      .post('/auth/login')
+      .send({
+        username: 'testabulle',
+        password: 'test',
+      })
+      .expect(401);
+  });
 });
